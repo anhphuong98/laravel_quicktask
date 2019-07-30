@@ -11,6 +11,8 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'PagesController@home');
+
+Route::get('/tasks', 'TaskController@create');
+
+Route::post('/tasks', 'TaskController@store');
