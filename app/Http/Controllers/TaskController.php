@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Task;
+use App\Http\Requests\TaskFormRequest;
 
 class TaskController extends Controller
 {
@@ -36,16 +37,17 @@ class TaskController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(TaskFormRequest $request)
     {
+  // dd(1);
 
         $task = new Task();
         $task->name = $request->get('name');
         $task->save();
         $tasks = Task::all();
         $data = ['tasks' => $tasks, 'status' => 'Add new task successfully'];
-        return view('tasks.create', $data);
 
+        return view('tasks.create', $data);
     }
 
     /**
@@ -91,5 +93,12 @@ class TaskController extends Controller
     public function destroy($id)
     {
         //
+        $task = Task::find($id);
+        $task->delete();
+        // $tasks = Task::all();
+        // $data = ['tasks' => $tasks];
+        // return view('tasks.create', compact('tasks'));
+        // return redirect(route('a'));
+        return redirect()->back();
     }
 }

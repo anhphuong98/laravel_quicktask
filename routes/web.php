@@ -13,6 +13,8 @@
 
 Route::get('/', 'PagesController@home');
 
-Route::get('/tasks', 'TaskController@create');
+Route::get('/tasks', 'TaskController@create')->name('a');
 
-Route::post('/tasks', 'TaskController@store');
+Route::post('/tasks', 'TaskController@store')->name('b');
+
+Route::post('/tasks/{task?}', 'TaskController@destroy')->name('name');
