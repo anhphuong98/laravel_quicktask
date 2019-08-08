@@ -9,4 +9,5 @@ class Task extends Model
     //
     protected $table = 'tasks';
     public $fillable = ['name'];
+
 }
